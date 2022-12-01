@@ -1,17 +1,22 @@
+import kotlin.math.max
+
 fun main() {
-    fun part1(input: List<String>): Int {
-        return input.size
-    }
-
-    fun part2(input: List<String>): Int {
-        return input.size
-    }
-
-    // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
-
     val input = readInput("Day01")
-    println(part1(input))
-    println(part2(input))
+    solution(input)
 }
+
+// list of numbers with an extra new line to seperate groups
+// I need to sum the groups and find the greatest
+fun solution(input: List<String>): Int {
+    var maxValueSoFar = Int.MIN_VALUE
+    input.fold(0) { acc: Int, s: String ->
+        if (s.isBlank()) {
+            maxValueSoFar = max(maxValueSoFar, acc)
+            0
+        } else {
+            acc + s.toInt()
+        }
+    }
+    return maxValueSoFar
+}
+// I decided to go for a semi functional approach
